@@ -1,0 +1,16 @@
+site.name = Demo Site
+
+login.greeting = Welcome!  Let's get started creating a new account.
+login.pw_prompt = Welcome back!  Please enter the password that we e-mailed to you before.
+login.sent_pw_mail = Exciting, a new user!  We have sent you an e-mail containing your password.  Please enter it here.
+login.email_subject = Welcome to the {0} website!
+login.bad_email = Error:  Invalid e-mail address; please try again
+login.bad_password = Error:  Password doesn't match!  Please try again.  We recommend copying and pasting from the e-mail.
+
+logout.title = Log out
+logout.message = You have successfully logged out
+logout.goto_text = the homepage
+
+login.already_logged_in.title = Login
+login.already_logged_in.message = You are already logged in as {0}
+login.already_logged_in.goto_text = the homepage

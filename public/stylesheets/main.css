@@ -1,0 +1,69 @@
+
+html * {
+	/* Global settings (meant as defaults to sub-elements */
+	font-family: sans-serif;
+	color: #555;
+}
+
+body {
+	background-color: #eee;
+	background-image: -webkit-gradient(linear, 0 100%, 100% 0,
+							color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
+							color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
+							color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
+	 						to(transparent));
+	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+						transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+						transparent 75%, transparent);
+	background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+						transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+						transparent 75%, transparent);
+	background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+						transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+						transparent 75%, transparent);
+	background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+						transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+						transparent 75%, transparent);
+	background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+						transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+						transparent 75%, transparent);
+						
+	-webkit-background-size: 50px 50px;
+	-moz-background-size: 50px 50px;
+	background-size: 50px 50px; /* Controls the size of the stripes */
+	
+	-moz-box-shadow: 1px 1px 8px gray;
+	-webkit-box-shadow: 1px 1px 8px gray;
+	box-shadow: 1px 1px 8px gray;		
+}
+
+#content {
+	width: 900px;
+	
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	
+	padding: 30px;
+	
+	background-color: white;
+	
+	border-radius: 30px;
+	-moz-border-radius: 30px;
+
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	
+	box-shadow: 10px 10px 12px black;
+	-moz-box-shadow: 10px 10px 12px black;
+	-webkit-box-shadow: 10px 10px 12px black;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=12, Direction=135, Color='#000000')";
+	/* For IE 5.5-7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=12, Direction=135, Color='#000000');
+}
+
+.error {
+	color: red;
+}

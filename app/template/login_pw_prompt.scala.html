@@ -1,0 +1,13 @@
+@(prompt: String, email: String, error: String = null)
+@main("Login"){
+	<h1>Login</h1>
+	
+<form action="@views.routes.Auth.loginSubmit" method="post">
+	<p>@prompt</p>
+	@if(error != null) {<p><span class="error">@error</span></p>}
+	<ul>
+	<li id="id_password_li"><input type="hidden" name="email" value="@email" /><label for="id_password">Please enter your password:</label><input type="password" id="id_password" name="password" /></li>
+	<input id="id_submit" type="Submit" value="Log In!" />
+	</ul>	
+</form>
+}
