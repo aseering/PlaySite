@@ -1,0 +1,12 @@
+@(wikiUri: String, wikiText: String, timestamp: Option[java.util.Date], isSuperuser: Boolean)
+@if(isSuperuser) {
+<div class="inline_wiki" id="@wikiUri">
+<div class="inline_wiki_inner">@Html(wikiText)</div>
+<span class="inline_wiki_date">Last Modified: @timestamp.toString</span>
+</div>
+} else {
+<div class="inline_wiki">
+<div class="inline_wiki_inner">@Html(wikiText)</div>
+<span class="inline_wiki_date">Last Modified: @if(timestamp.isDefined) { @timestamp.get.toString } else { Never }</span>
+</div>
+}

@@ -12,7 +12,7 @@ class AuthTest extends Specification {
 	"Auth" should {
 		"create a new user account" in {
 		    running(FakeApplication()) {
-				val login_result = views.Auth.login()(FakeRequest())
+				val login_result = views.Authn.login()(FakeRequest())
 				
 				status(login_result) must equalTo(OK)
 				contentAsString(login_result) must contain("name=\"email\"")
@@ -24,7 +24,7 @@ class AuthTest extends Specification {
 				SendMail.sender = { m : Message =>				
 					val password = m.getContent().toString().split("\n")(5) // HARDCODED; need a better way to pick out the password
 					
-					val login_submit = views.Auth.loginSubmit()(FakeRequest() withFormUrlEncodedBody(
+					val login_submit = views.Authn.loginSubmit()(FakeRequest() withFormUrlEncodedBody(
 						"email" -> "testUser@example.com",
 					    "password" -> password
 					    ))
@@ -33,7 +33,7 @@ class AuthTest extends Specification {
 					session(login_submit).get("email").get must be equalTo("testUser@example.com")
 				}
 	
-				val login_username = views.Auth.loginUsername()(FakeRequest() withFormUrlEncodedBody(
+				val login_username = views.Authn.loginUsername()(FakeRequest() withFormUrlEncodedBody(
 						"email" -> "testUser@example.com"
 					))
 				
@@ -46,7 +46,7 @@ class AuthTest extends Specification {
 				userMaybe.get.email must be equalTo("testUser@example.com")
 				userMaybe.get.is_superuser must be equalTo(false)
 				
-				val login_submit_failed = views.Auth.loginSubmit()(FakeRequest() withFormUrlEncodedBody(
+				val login_submit_failed = views.Authn.loginSubmit()(FakeRequest() withFormUrlEncodedBody(
 					"email" -> "testUser@example.com",
 				    "password" -> "fake_password"
 				    ))
@@ -63,7 +63,7 @@ class AuthTest extends Specification {
 					password must not be equalTo(null)
 					password must not be equalTo("")
 					
-					val login_submit = views.Auth.loginSubmit()(FakeRequest() withFormUrlEncodedBody(
+					val login_submit = views.Authn.loginSubmit()(FakeRequest() withFormUrlEncodedBody(
 						"email" -> "testUser@example.com",
 					    "password" -> password
 					    ))
@@ -72,7 +72,7 @@ class AuthTest extends Specification {
 					session(login_submit).get("email").get must be equalTo("testUser@example.com")
 				}
 	
-				val login_username2 = views.Auth.loginUsername()(FakeRequest() withFormUrlEncodedBody(
+				val login_username2 = views.Authn.loginUsername()(FakeRequest() withFormUrlEncodedBody(
 						"email" -> "testUser@example.com"
 					))
 					

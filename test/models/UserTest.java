@@ -21,7 +21,7 @@ public class UserTest {
 				// We can't really verify without testing our getters,
 				// which is up next.
 				User.addUser("testADU@example.com", "password", false);
-				User.dropUser("testADU@example.com", "password");
+				User.dropUser("testADU@example.com", Option.apply("password"));
 	        }});
 	}
 	
@@ -48,7 +48,7 @@ public class UserTest {
 				assertFalse(u.isDefined());
 				
 				// Drop a user; make sure only that user goes away
-				User.dropUser("testFBE2@example.com", "password2");
+				User.dropUser("testFBE2@example.com", Option.apply("password2"));
 				u = User.findByEmail("testFBE2@example.com");
 				assertFalse(u.isDefined());
 				u = User.findByEmail("testFBE1@example.com");
@@ -56,7 +56,7 @@ public class UserTest {
 				assertEquals(u.get().email(), "testFBE1@example.com");
 				
 				// Finish cleaning up; make sure no one's home
-				User.dropUser("testFBE1@example.com", "password");
+				User.dropUser("testFBE1@example.com", Option.apply("password"));
 				u = User.findByEmail("testFBE1@example.com");
 				assertFalse(u.isDefined());
 				u = User.findByEmail("testFBE2@example.com");
@@ -72,13 +72,13 @@ public class UserTest {
 	        public void run() {
 				// Simple positive and negative tests
 				User.addUser("testLogin@example.com", "pass1234", false);
-				assertTrue(User.checkPassword("testLogin@example.com", "pass1234"));
-				assertFalse(User.checkPassword("testLogin@example.com", "This is the wrong password"));
+				assertTrue(User.login("testLogin@example.com", "pass1234").isDefined());
+				assertFalse(User.login("testLogin@example.com", "This is the wrong password").isDefined());
 				
 				// Make sure we don't match some other user
 				User.addUser("testLogin2@example.com", "pass123456", false);
-				assertTrue(User.checkPassword("testLogin2@example.com", "pass123456"));
-				assertFalse(User.checkPassword("testLogin2@example.com", "pass1234"));
+				assertTrue(User.login("testLogin2@example.com", "pass123456").isDefined());
+				assertFalse(User.login("testLogin2@example.com", "pass1234").isDefined());
 				
 				// Make sure we're not storing any passwords in plain text
 				Option<User> ou = User.findByEmail("testLogin2@example.com");
@@ -87,8 +87,8 @@ public class UserTest {
 				assertEquals(u.password().indexOf("pass1234"), -1);
 				
 				// Clean up
-				User.dropUser("testLogin@example.com", "pass1234");
-				User.dropUser("testLogin2@example.com", "pass123456");
+				User.dropUser("testLogin@example.com", Option.apply("pass1234"));
+				User.dropUser("testLogin2@example.com", Option.apply("pass123456"));
 	        }});
 	}
 	
@@ -116,8 +116,8 @@ public class UserTest {
 				ou = User.findByEmail("testLogin2@example.com");
 				assertTrue(ou.get().is_superuser());
 				
-				User.dropUser("testLogin@example.com", "pass1234");
-				User.dropUser("testLogin2@example.com", "pass1234");				
+				User.dropUser("testLogin@example.com", Option.apply("pass1234"));
+				User.dropUser("testLogin2@example.com", Option.apply("pass1234"));				
 	    	}});
 	}
 

@@ -1,4 +1,4 @@
-# Tasks schema
+# User schema
  
 # --- !Ups
 

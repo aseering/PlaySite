@@ -2,7 +2,7 @@
 @main("Login"){
 	<h1>Login</h1>
 	
-<form action="@views.routes.Auth.loginSubmit" method="post">
+<form action="@views.routes.Authn.loginSubmit" method="post">
 	<p>@prompt</p>
 	@if(error != null) {<p><span class="error">@error</span></p>}
 	<ul>

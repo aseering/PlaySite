@@ -14,3 +14,5 @@ logout.goto_text = the homepage
 login.already_logged_in.title = Login
 login.already_logged_in.message = You are already logged in as {0}
 login.already_logged_in.goto_text = the homepage
+
+wiki.empty_page = This page intentionally left blank.

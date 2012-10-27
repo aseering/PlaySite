@@ -2,10 +2,10 @@
 @main("Logout"){
 	<h1>Logout</h1>
 
-	@if(email == null) {<p>You are not currently logged in!  <a href="@views.routes.Auth.login">Log In</a></p>} else {
+	@if(email == null) {<p>You are not currently logged in!  <a href="@views.routes.Authn.login">Log In</a></p>} else {
 	<p>You are currently logged in as @email.  Click here to log out.</p>
 	
-<form action="@views.routes.Auth.logoutDo" method="post">
+<form action="@views.routes.Authn.logoutDo" method="post">
 	<input id="id_submit" type="Submit" value="Log Out" />
 </form>
 }

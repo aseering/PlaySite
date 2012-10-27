@@ -1,4 +1,4 @@
-# Tasks schema
+# User schema update: is_superuser column
  
 # --- !Ups
 

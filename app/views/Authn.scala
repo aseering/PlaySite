@@ -13,7 +13,13 @@ import models.User
 import controllers.SendMail
 import play.api.i18n.Messages
 
-object Auth extends Controller {
+/**
+ * Authentication ("Authn") helper methods
+ * 
+ * Authentication is proving who you are.
+ * Authorization is, given who you are, proving that you're allowed access.
+ */
+object Authn extends Controller {
   
 	/** Returns a pseudorandomly generated String drawing upon
 	 *  only ASCII characters between 33 and 126.
@@ -86,14 +92,14 @@ object Auth extends Controller {
 	  	Form(tuple(
 	  			"email" -> nonEmptyText,
 	  			"password" -> nonEmptyText
-	  	) verifying("Invalid password", result => result match {
-	  	  	case (e, p) => (User.checkPassword(e,p))
-	  	})).bindFromRequest.fold(
+	  	)).bindFromRequest.fold(
 		    errors => BadRequest(template.html.login(Messages("login.greeting"), Messages("login.bad_password"))),
   			user => {
-				if (User.checkPassword(user._1, user._2)) {
+  			    val u = User.login(user._1, user._2)
+				if (u.isDefined) {
 					// Now send them to the waiting page to log in when they're ready
-					Redirect(routes.Application.index).withSession("email" -> user._1)
+					
+				    Redirect(routes.Application.index).withSession("email" -> user._1)
 				} else {
 					// Error out if the user already exists
 					// We shouldn't get here unless something is wrong...

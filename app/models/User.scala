@@ -77,8 +77,8 @@ object User {
    * If 'password' is specified, must match or we return false.
    * TODO:  Should deal more intelligently with error conditions.
    */
-  def dropUser(email: String, password: String = null) : Boolean = {
-    if (password != null && !checkPassword(email, password)) { 
+  def dropUser(email: String, password: Option[String] = None) : Boolean = {
+    if (password.isDefined && !login(email, password.get).isDefined) { 
       return false
     }
     if (!findByEmail(email).isDefined) {
@@ -95,16 +95,20 @@ object User {
   /**
    * Check a password.  Returns true iff the specified (username, password) pair matches something in our DB.
    */
-  def checkPassword(email: String, password: String) : Boolean = {
+  def login(email: String, password: String) : Option[User] = {
 	var userMaybe = findByEmail(email)
 	userMaybe match {
 	  case Some(user) => {
 		  var components = passwordComponents(user.password)
-		  return (components != None &&
-				  user.password == encryptPassword(password, components.salt))
+		  if (components != None &&
+			  user.password == encryptPassword(password, components.salt)) {
+		       return userMaybe
+		  } else {
+		       return None
+		  }
 	  }
 	  case None => {
-		  return false
+		  return None
 	  }
 	}
   }

@@ -4,11 +4,13 @@
 
 # Home page
 GET     /                           views.Application.index
-GET		/login						views.Auth.login
-POST	/login_submit				views.Auth.loginSubmit
-POST	/login_username				views.Auth.loginUsername
-GET		/logout						views.Auth.logout
-POST	/logout_do					views.Auth.logoutDo
+GET		/login						views.Authn.login
+POST	/login_submit				views.Authn.loginSubmit
+POST	/login_username				views.Authn.loginUsername
+GET		/logout						views.Authn.logout
+POST	/logout_do					views.Authn.logoutDo
+GET		/wiki/:uri					views.Wiki.wiki(uri: String)
+GET		/wiki						views.Wiki.wiki(uri = "index.html")
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
