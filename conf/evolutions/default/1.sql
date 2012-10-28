@@ -2,9 +2,9 @@
  
 # --- !Ups
 
-CREATE SEQUENCE user_id_seq;
 CREATE TABLE users (
-    id integer NOT NULL DEFAULT nextval('user_id_seq'),
+    id integer NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
     email varchar(256) not null,
     password varchar(256) not null
 );
@@ -12,4 +12,4 @@ CREATE TABLE users (
 # --- !Downs
  
 DROP TABLE users;
-DROP SEQUENCE user_id_seq;
+
