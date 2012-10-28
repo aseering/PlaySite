@@ -1,12 +1,18 @@
-@(wikiUri: String, wikiText: String, timestamp: Option[java.util.Date], isSuperuser: Boolean)
-@if(isSuperuser) {
+@(wikiUri: String)(defaultContent: String)(implicit request: RequestHeader, lang: Lang)
+@* More template logic here than I really like...  Should be in a controller.
+   This gives enough of a cleaner API that I think it's worth the internal ugliness. *@
+@defining(Wiki.getPage(wikiUri)) { pageMaybe =>
+@defining(if(pageMaybe.isDefined) Html(pageMaybe.get.content) else Html(defaultContent)) { wikiText =>
+@defining(if(pageMaybe.isDefined) pageMaybe.get.modifiedDate.toString else Messages("wiki.no_modified_date")) { modifiedDateStr =>
+@if(Authz.isSuperuser) {
 <div class="inline_wiki" id="@wikiUri">
-<div class="inline_wiki_inner">@Html(wikiText)</div>
-<span class="inline_wiki_date">Last Modified: @timestamp.toString</span>
+<div class="inline_wiki_inner">@wikiText</div>
+<span class="inline_wiki_date">@Messages("wiki.last_modified_txt") @modifiedDateStr</span>
 </div>
 } else {
 <div class="inline_wiki">
-<div class="inline_wiki_inner">@Html(wikiText)</div>
-<span class="inline_wiki_date">Last Modified: @if(timestamp.isDefined) { @timestamp.get.toString } else { Never }</span>
+<div class="inline_wiki_inner">@wikiText</div>
+<span class="inline_wiki_date">@Messages("wiki.last_modified_txt") @modifiedDateStr</span>
 </div>
 }
+}}}

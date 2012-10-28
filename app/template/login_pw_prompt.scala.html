@@ -1,4 +1,4 @@
-@(prompt: String, email: String, error: String = null)
+@(prompt: String, email: String, error: String = null)(implicit request: play.api.mvc.RequestHeader)
 @main("Login"){
 	<h1>Login</h1>
 	

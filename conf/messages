@@ -16,3 +16,5 @@ login.already_logged_in.message = You are already logged in as {0}
 login.already_logged_in.goto_text = the homepage
 
 wiki.empty_page = This page intentionally left blank.
+wiki.no_modified_date = Never
+wiki.last_modified_txt = Last Modified:
