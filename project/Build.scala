@@ -8,13 +8,13 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-		//"postgresql" % "postgresql" % "9.1-901.jdbc4",
-            "mysql" % "mysql-connector-java" % "5.1.21",
-		"javax.mail" % "mail" % "1.4.5"
+        "mysql" % "mysql-connector-java" % "5.1.21",
+		"javax.mail" % "mail" % "1.4.5",
+		"org.scalatest" % "scalatest_2.9.1" % "2.0.M4"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
-      // Add your own project settings here      
+		// Add your own project settings here      
     )
 
 }

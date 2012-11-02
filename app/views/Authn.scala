@@ -98,8 +98,11 @@ object Authn extends Controller {
   			    val u = User.login(user._1, user._2)
 				if (u.isDefined) {
 					// Now send them to the waiting page to log in when they're ready
-					
-				    Redirect(routes.Application.index).withSession("email" -> user._1)
+					if (u.get.is_superuser) {
+						Redirect(routes.Application.index).withSession("email" -> user._1, "is_superuser" -> "true")
+					} else {
+						Redirect(routes.Application.index).withSession("email" -> user._1)
+					}
 				} else {
 					// Error out if the user already exists
 					// We shouldn't get here unless something is wrong...

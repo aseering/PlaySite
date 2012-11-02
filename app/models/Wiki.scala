@@ -89,6 +89,17 @@ object Wiki {
 	}
 	
 	/**
+	 * Create the specified page, or update it if it already exists.
+	 * 
+	 * Equivalent to
+	 * (if (getPage(uri).isDefined) updatePage _ else createPage _)(uri, newContent, updater)
+	 * though the implementation may be optimized.
+	 */
+	def addPage(uri: String, newContent: String, updater: String) {
+	    (if (getPage(uri).isDefined) updatePage _ else createPage _)(uri, newContent, updater)
+	}
+	
+	/**
 	 * Delete the specified page.
 	 */
 	def deletePage(uri: String) {

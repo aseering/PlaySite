@@ -63,7 +63,7 @@ object User {
    * TODO:  We should deal with that or something.
    */
   def addUser(email: String, password: String, is_superuser: Boolean = false) {
-	  DB.withConnection { implicit connection =>
+      DB.withConnection { implicit connection =>
 	    SQL("insert into users (email, password, is_superuser) values ({email}, {password}, {is_superuser});").on(
 	    		'email -> email,
 	    		'password -> encryptPassword(password),

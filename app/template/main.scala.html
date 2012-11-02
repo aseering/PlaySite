@@ -8,7 +8,17 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
-        @if(request.session.get("is_superuser").isDefined && request.session.get("is_superuser").get == "true") {<script src="@routes.Assets.at("javascripts/tiny_mce/tiny_mce.js")" type="text/javascript"></script>}
+        @if(request.session.get("is_superuser").isDefined && request.session.get("is_superuser").get == "true") {
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/admin.css")">
+        <script src="@routes.Assets.at("tiny_mce/tiny_mce.js")" type="text/javascript"></script>
+        <script language="JavaScript">
+        	tinyMCE.init({
+        		mode: "specific_textareas",
+        		editor_selector: "tinymce_editor",
+        		height: 500,
+        		content_css: "@routes.Assets.at("stylesheets/tinymce_font_defaults.css")"
+        	});
+        </script>}
     </head>
     <body>
     	<div id="content">

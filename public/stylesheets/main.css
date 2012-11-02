@@ -3,6 +3,7 @@ html * {
 	/* Global settings (meant as defaults to sub-elements */
 	font-family: sans-serif;
 	color: #555;
+	font-size: medium;
 }
 
 body {
@@ -31,10 +32,6 @@ body {
 	-webkit-background-size: 50px 50px;
 	-moz-background-size: 50px 50px;
 	background-size: 50px 50px; /* Controls the size of the stripes */
-	
-	-moz-box-shadow: 1px 1px 8px gray;
-	-webkit-box-shadow: 1px 1px 8px gray;
-	box-shadow: 1px 1px 8px gray;		
 }
 
 #content {
@@ -66,4 +63,14 @@ body {
 
 .error {
 	color: red;
+}
+
+.tinymce_editor {
+	width: 100%;
+}
+
+.inline_wiki_date {
+	font-size: small;
+	font-style: italic;
+	color: #bbb;	
 }
