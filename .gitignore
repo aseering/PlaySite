@@ -12,4 +12,9 @@ dist
 /.classpath
 /.project
 /RUNNING_PID
+.cache
+.externalToolBuilders/
+.settings/
+.target/
+bin/
 *~
