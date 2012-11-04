@@ -10,7 +10,8 @@ object ApplicationBuild extends Build {
     val appDependencies = Seq(
         "mysql" % "mysql-connector-java" % "5.1.21",
 		"javax.mail" % "mail" % "1.4.5",
-		"org.scalatest" % "scalatest_2.9.1" % "2.0.M4"
+		"org.scalatest" % "scalatest_2.9.1" % "2.0.M4",
+		"org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.25.0"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(

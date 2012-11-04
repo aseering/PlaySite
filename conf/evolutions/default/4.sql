@@ -12,13 +12,11 @@ CREATE TABLE wikipages (
     updater varchar(255),
     modified_date timestamp
 );
-CREATE TRIGGER wikipages_modified_date_trigger BEFORE UPDATE ON wikipages FOR EACH ROW SET NEW.modified_date = NOW();
 CREATE UNIQUE INDEX wikipages_uri_index ON wikipages (uri);
  
 # --- !Downs
 
 DROP INDEX wikipages_uri_index;
-DROP TRIGGER wikipages_modified_date_trigger;
 DROP TABLE wikipages;
 
 

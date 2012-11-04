@@ -45,7 +45,7 @@ object Authn extends Controller {
 				Messages("logout.title"),
 				Messages("logout.message"),
 				views.routes.Application.index.toString(),
-				Messages("logout.goto_text"))).withSession(session - "email")
+				Messages("logout.goto_text"))).withSession(session - "email" - "is_superuser")
 	}
 	  
 	def login = Action { implicit request =>

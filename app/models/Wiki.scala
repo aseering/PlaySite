@@ -58,10 +58,11 @@ object Wiki {
 	 */
 	def createPage(uri: String, content: String, author: String) {
 	    DB.withConnection { implicit connection => 
-	    	SQL("insert into wikipages (uri, content, author) values ({uri}, {content}, {author});").on(
+	    	SQL("insert into wikipages (uri, content, author, modified_date) values ({uri}, {content}, {author}, {modified_date});").on(
 	    	        'uri -> uri,
 	    	        'content -> content,
-	    	        'author -> author
+	    	        'author -> author,
+	    	        'modified_date -> new Date()
 	    			).executeInsert()
 	    }
 	}
