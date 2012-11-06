@@ -90,7 +90,7 @@ class AuthTest extends Specification {
 		}
 
 		"work in a Web browser" in {
-			running(TestServer(3333), HTMLUNIT) { browser =>
+			running(TestServer(3333), FIREFOX) { browser =>
 			  	// Lighter-weight test; not testing all the negative cases here
 			  	browser.goTo("http://localhost:3333/login")
 			  	browser.pageSource() must contain("name=\"email\"")
