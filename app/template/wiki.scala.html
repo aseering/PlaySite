@@ -1,5 +1,5 @@
 @(uri: String)(implicit request: RequestHeader, lang: Lang)
 
 @main("") {
-@inline_wiki(uri)(Messages("wiki.empty_page"))
+@inline_wiki(uri){@Messages("wiki.empty_page")}
 }

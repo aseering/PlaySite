@@ -1,7 +1,12 @@
 @(message: String)(implicit request: play.api.mvc.RequestHeader)
 
-@main("Welcome to Play 2.0") {
-    
-    <h1>Welcome to my website!</h1>
-    
+@main("") {
+@inline_wiki(""){
+<h1>Welcome to the website!</h1>
+
+<ul>
+<li><a href="@views.routes.Authn.login">Login</a> (<a href="@views.routes.Authn.logout">Logout</a>)</li>
+<li><a href="@views.routes.Wiki.wiki("index.html")">Wiki</a></li>
+</ul>
+}
 }
