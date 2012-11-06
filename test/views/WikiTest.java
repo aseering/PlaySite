@@ -64,7 +64,6 @@ public class WikiTest {
 	           logout(browser);
 
 	           browser.goTo(TEST_URL + "/wiki/test");
-	           System.out.println(browser.pageSource());
 	           assertThat(browser.$("[id=\"id_wiki:test\"] div.inline_wiki_inner p").getTexts().get(0)).isEqualTo("Sample Text");
 	           
 	           // Cleanup
