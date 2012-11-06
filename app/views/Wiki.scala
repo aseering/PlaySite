@@ -9,7 +9,7 @@ import controllers.Authz
 object Wiki extends Controller {
 
 	def wiki(uri: String) = Action { implicit request =>
-		Ok(template.html.wiki("wiki:" + uri));
+		Ok(template.wiki.html.wiki("wiki:" + uri));
 	}
 	
 	def postUpdate() = Action { implicit request =>

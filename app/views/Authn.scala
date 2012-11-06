@@ -34,9 +34,9 @@ object Authn extends Controller {
 	def logout = Action { implicit request => 
 	  	var loginMaybe = request.session.get("email")
 		if (loginMaybe.isDefined) {
-			Ok(template.html.logout(loginMaybe.get))
+			Ok(template.auth.html.logout(loginMaybe.get))
 		} else {
-			BadRequest(template.html.logout())
+			BadRequest(template.auth.html.logout())
 		}
 	}
 	
@@ -58,16 +58,16 @@ object Authn extends Controller {
   					views.routes.Application.index.toString(),
   					Messages("login.already_logged_in.goto_text")))
 		} else {
-			Ok(template.html.login(Messages("login.greeting")))
+			Ok(template.auth.html.login(Messages("login.greeting")))
 		}
 	}
 	
 	def loginUsername = Action { implicit request =>
 		Form("email" -> nonEmptyText).bindFromRequest.fold(
-		    errors => BadRequest(template.html.login(Messages("login.greeting"), Messages("login.bad_email"))),
+		    errors => BadRequest(template.auth.html.login(Messages("login.greeting"), Messages("login.bad_email"))),
 		    email => {
 		    	if (User.findByEmail(email).isDefined) {
-		    		Ok(template.html.login_pw_prompt(Messages("login.pw_prompt"), email))
+		    		Ok(template.auth.html.login_pw_prompt(Messages("login.pw_prompt"), email))
 		    	} else {
 					// We're making a new account!
 					// Start by creating a new password
@@ -80,9 +80,9 @@ object Authn extends Controller {
 					// Get system properties used to customize the e-mail
 					var from_addr = Play.current.configuration.getString("mail.default_from_address").get
 					var site_name = Messages("site.name")
-					SendMail.sendMail(from_addr, email, Messages("login.email_subject", site_name), template.html.welcome_email(site_name, new_password).body)
+					SendMail.sendMail(from_addr, email, Messages("login.email_subject", site_name), template.email.html.welcome_email(site_name, new_password).body)
 		    	  
-		    		Ok(template.html.login_pw_prompt(Messages("login.sent_pw_mail"), email))
+		    		Ok(template.auth.html.login_pw_prompt(Messages("login.sent_pw_mail"), email))
 		    	}
 		    }
 		    )
@@ -93,7 +93,7 @@ object Authn extends Controller {
 	  			"email" -> nonEmptyText,
 	  			"password" -> nonEmptyText
 	  	)).bindFromRequest.fold(
-		    errors => BadRequest(template.html.login(Messages("login.greeting"), Messages("login.bad_password"))),
+		    errors => BadRequest(template.auth.html.login(Messages("login.greeting"), Messages("login.bad_password"))),
   			user => {
   			    val u = User.login(user._1, user._2)
 				if (u.isDefined) {
@@ -106,7 +106,7 @@ object Authn extends Controller {
 				} else {
 					// Error out if the user already exists
 					// We shouldn't get here unless something is wrong...
-					BadRequest(template.html.login(Messages("login.greeting"), Messages("login.bad_password")))	
+					BadRequest(template.auth.html.login(Messages("login.greeting"), Messages("login.bad_password")))	
   				}
   			}
 		)

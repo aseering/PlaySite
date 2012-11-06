@@ -1,5 +1,5 @@
 @(email: String = null)(implicit request: play.api.mvc.RequestHeader)
-@main("Logout"){
+@template.html.main("Logout"){
 	<h1>Logout</h1>
 
 	@if(email == null) {<p>You are not currently logged in!  <a href="@views.routes.Authn.login">Log In</a></p>} else {

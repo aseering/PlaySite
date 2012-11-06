@@ -1,5 +1,5 @@
 @(prompt: String, email: String, error: String = null)(implicit request: play.api.mvc.RequestHeader)
-@main("Login"){
+@template.html.main("Login"){
 	<h1>Login</h1>
 	
 <form action="@views.routes.Authn.loginSubmit" method="post">
